@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Frame — Cover Art Studio</title>
+<meta name="description" content="Turn your photos into bold, multi-panel, GTA-style cover art. Pick a layout, grade it sunset or neon, add a caption, export a PNG. Free, offline, no uploads.">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand-block">
+    <div class="brand">VICE <span>FRAME</span></div>
+    <div class="tagline">cover art studio</div>
+  </div>
+  <ol class="steps">
+    <li><b>1</b> Add a photo</li>
+    <li><b>2</b> Pick a layout</li>
+    <li><b>3</b> Export the PNG</li>
+  </ol>
+</header>
+
+<main class="workspace">
+  <section class="stage-card">
+    <div class="canvas-wrap" id="canvasWrap">
+      <canvas id="stage" width="540" height="675"></canvas>
+      <div class="drop-hint" id="dropHint">Drop photos to fill the frame</div>
+    </div>
+    <div class="export-bar">
+      <div class="size-switch" id="sizeSwitch" role="group" aria-label="Export size"></div>
+      <button id="exportBtn" class="export-btn" type="button">Export PNG</button>
+    </div>
+    <p class="hint">Drag inside a panel to move its photo · scroll over a panel to zoom · click a panel to select it</p>
+  </section>
+
+  <aside class="panel-stack">
+    <section class="card">
+      <h2>Photos</h2>
+      <div class="row">
+        <label class="btn primary" for="fileInput">Add your photos</label>
+        <input id="fileInput" type="file" accept="image/*" multiple hidden>
+        <button class="btn" id="spreadBtn" type="button">One photo, all panels</button>
+      </div>
+      <div class="row wrap">
+        <span class="muted">No photo handy? Try a sample:</span>
+        <button class="chip" type="button" data-sample="boulevard">Sunset Boulevard</button>
+        <button class="chip" type="button" data-sample="neon">Neon Night</button>
+      </div>
+      <div class="tray" id="tray"></div>
+      <p class="fine">Your photos never leave this device — no uploads, no accounts, and the studio works fully offline.</p>
+    </section>
+
+    <section class="card">
+      <h2>Layout</h2>
+      <div class="options" id="layoutOptions"></div>
+    </section>
+
+    <section class="card">
+      <h2>Colour grade</h2>
+      <div class="options" id="gradeOptions"></div>
+    </section>
+
+    <section class="card">
+      <h2>Caption</h2>
+      <label class="field">Title
+        <input id="titleInput" type="text" maxlength="42" value="NEON SHORES" autocomplete="off">
+      </label>
+      <label class="field">Subtitle
+        <input id="subtitleInput" type="text" maxlength="42" value="VICE DISTRICT" autocomplete="off">
+      </label>
+      <label class="field">Title size
+        <input id="titleSize" type="range" min="0.7" max="1.4" step="0.01" value="1">
+      </label>
+      <div class="row between">
+        <span class="muted">Position</span>
+        <div class="seg" id="posSeg">
+          <button type="button" data-pos="bottom" class="active">Bottom</button>
+          <button type="button" data-pos="top">Top</button>
+        </div>
+      </div>
+      <div class="row between">
+        <span class="muted">Title colour</span>
+        <div class="swatches" id="titleColors"></div>
+      </div>
+      <div class="row between">
+        <span class="muted">Accent</span>
+        <div class="swatches" id="accentColors"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Panel <span id="panelLabel">1</span></h2>
+      <label class="field">Zoom
+        <input id="zoomRange" type="range" min="1" max="3" step="0.01" value="1">
+      </label>
+      <label class="field">Pan &#8596;
+        <input id="panXRange" type="range" min="-1" max="1" step="0.01" value="0">
+      </label>
+      <label class="field">Pan &#8597;
+        <input id="panYRange" type="range" min="-1" max="1" step="0.01" value="0">
+      </label>
+      <button class="btn" id="resetPanelBtn" type="button">Reset panel framing</button>
+    </section>
+  </aside>
+</main>
+
+<footer class="foot">
+  <p>Vice Frame is an original fan-made tool. It is not affiliated with Rockstar Games or the Grand Theft Auto series, and it ships with no game artwork, logos or fonts. Type is set in Noto Sans and Noto Sans Display by Google, licensed under the SIL Open Font License 1.1 (see <span class="mono">app/fonts/OFL-1.1.txt</span>). The bundled sample photos were generated with an image model for this app.</p>
+</footer>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
